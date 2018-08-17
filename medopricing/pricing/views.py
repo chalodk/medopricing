@@ -35,7 +35,7 @@ def price(request):
 		precio = {'tablero':0,'union':0, 'apoyos':0}
 		for i in aux:
 			precio[i] = precio[i]+(dicc[aux[i]['veneer']]+dicc[aux[i]['width']])*aux[i]['area']+dicc['prmt']*aux[i]['prmt']
-		
+		precio['final']=precio['tablero']+precio['union']+precio['apoyos']
 		return JSONResponse(precio)
 
 	#if request.method == 'POST':
