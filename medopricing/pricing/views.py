@@ -8,7 +8,7 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
 from rest_framework.parsers import JSONParser
 from pricing.models import Prices
-from pricing.serializers import PartSerializer
+from pricing.serializers import PricesSerializer
 
 
 # Create your views here.
@@ -28,8 +28,8 @@ def price(request):
 	#List all parts, or create a new instance.
 	#"""
 	if request.method == 'GET':
-		parts = Prices.objects.all()
-		serializer = SerieSerializer(series, many=True)
+		prices = Prices.objects.all()
+		serializer = PricesSerializer(prices, many=True)
 		return JSONResponse(serializer.data)
 
 	#if request.method == 'POST':
