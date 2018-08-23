@@ -30,13 +30,13 @@ def price(request):
 	if request.method == 'GET':
 		prices = Prices.objects.all()
 		serializer = PricesSerializer(prices, many=True)
-		aux = JSONParser().parse(request)
-		dicc = serializer.data
-		precio = {'tablero':0,'union':0, 'apoyos':0}
-		for i in aux:
-			precio[i] = precio[i]+(dicc[aux[i]['veneer']]+dicc[aux[i]['width']])*aux[i]['area']+dicc['prmt']*aux[i]['prmt']
-		precio['final']=precio['tablero']+precio['union']+precio['apoyos']
-		return JSONResponse(precio)
+		#aux = JSONParser().parse(request)
+		#dicc = serializer.data
+		#precio = {'tablero':0,'union':0, 'apoyos':0}
+		#for i in aux:
+	#		precio[i] = precio[i]+(dicc[aux[i]['veneer']]+dicc[aux[i]['width']])*aux[i]['area']+dicc['prmt']*aux[i]['prmt']
+		#precio['final']=precio['tablero']+precio['union']+precio['apoyos']
+		return JSONResponse(serializer.data)
 
 	#if request.method == 'POST':
 	#	data=list() 
