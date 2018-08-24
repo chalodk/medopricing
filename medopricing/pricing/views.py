@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
+from inteligencia import precio_mueble
 from django.shortcuts import render
 
 from django.http import HttpResponse
@@ -28,15 +29,23 @@ def price(request):
 	#List all parts, or create a new instance.
 	#"""
 	if request.method == 'GET':
-		prices = Prices.objects.all()
-		serializer = PricesSerializer(prices, many=True)
+		aux = Prices.objects.all()
+        serializer1 = PricesSerializer(aux)
+        params = JSONParser().parse(request) ## dict con los parametros
+        prices = serializer1.data ### dict con los precios
+        final = precio_mueble(params, prices)
+        return JSONResponse(final)
+		
+        
+       
+        
 		#aux = JSONParser().parse(request)
 		#dicc = serializer.data
 		#precio = {'tablero':0,'union':0, 'apoyos':0}
 		#for i in aux:
 	#		precio[i] = precio[i]+(dicc[aux[i]['veneer']]+dicc[aux[i]['width']])*aux[i]['area']+dicc['prmt']*aux[i]['prmt']
 		#precio['final']=precio['tablero']+precio['union']+precio['apoyos']
-		return JSONResponse(serializer.data)
+		#return JSONResponse(serializer.data)
 
 	#if request.method == 'POST':
 	#	data=list() 
