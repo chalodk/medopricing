@@ -12,14 +12,35 @@ import math
 
 def precio_mueble(params, precios):
     #función para calcular precio de cada parte del mueble
-    precio_final = {'tablero':0, 'union':0, 'apoyos':0}
-    
-    for i in params:
-        precio_final[i]  = precio_final[i]+(precios[params[i]['veneer']]+precios[params[i]['width']])*params[i]['area']+precios['prmt']*params[i]['prmt']
-    precio_final['final']=precio_final['tablero']+precio_final['union']
-    return precio_final    
+    precio_final = dict()
+    final = 0
+    parts = list(params)
+   
+    for i in parts:
+        
+        aux = 0
+        vn = params[i]['veneer']
+        gr = params[i]['width']
+        keys = list(parts[i])
+        
+        for k in keys:
+            
+            
+            if k == 'area':
+                aux = aux + params[i][k]*(precios[vn]+precios[gr])
+                    
+            elif k == 'perimeter':
+                aux = aux + params[i][k]*precios['prmtr']
+
+            else:
+                pass
+            precio_final[i] = aux
+        final = final+precio_final[i]
+    final_p = {'final':final}
+                
+    return final_p
 
 
-# In[21]:
+
 
 

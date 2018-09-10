@@ -34,7 +34,13 @@ def price(request):
         params = JSONParser().parse(request) ## dict con los parametros
         prices = serializer1.data ### dict con los precios
         final = precio_mueble(params, prices)
-        return JSONResponse(final)
+        serializer2 = FinalSerializer(data=final) ## generando instancia
+        aux2 = serializer2.save() ## Guardando instancia
+        serializer3 = FinalSerializer(Final.objects.all())
+        precio_final = serializer3.data ## Carga la data del modelo "Final"
+        
+        
+        return JSONResponse(precio_final)
 		
         
        

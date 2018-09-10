@@ -17,7 +17,7 @@ class Prices(models.Model):
 	alpi6 = models.FloatField(null=True)
 	alpi7 = models.FloatField(null=True)
 	alpi8 = models.FloatField(null=True)
-	alpi9= models.FloatField(null=True)
+	alpi9 = models.FloatField(null=True)
 	alpi10 = models.FloatField(null=True)
 	alpi11 = models.FloatField(null=True)
 	contrach = models.FloatField(null=True)
@@ -37,7 +37,15 @@ class Prices(models.Model):
 	P4 = models.FloatField(null=True)
 	P5 = models.FloatField(null=True)
 
-	
+class Final (models.Model):
+    
+    final = models.FloatField(null=True)
+    
+    
+
+    
+    
+    
 
 #class Design(models.Model):
 
