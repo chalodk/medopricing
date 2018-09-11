@@ -9,9 +9,8 @@ import numpy as np
 import math
 
 
-
 def precio_mueble(params, precios):
-    #función para calcular precio de cada parte del mueble
+    
     precio_final = dict()
     final = 0
     parts = list(params)
@@ -20,8 +19,21 @@ def precio_mueble(params, precios):
         
         aux = 0
         vn = params[i]['veneer']
-        gr = params[i]['width']
-        keys = list(parts[i])
+        gr = params[i]['thickness']
+        
+        if gr >= 30:
+        
+            gr = 'tmm'
+        
+        elif gr < 30 and gr >=18:
+        
+            gr = 'dmm'
+        
+        else:
+        
+            gr = 'qmm'
+        
+        keys = list(params[i])
         
         for k in keys:
             
@@ -39,8 +51,6 @@ def precio_mueble(params, precios):
     final_p = {'final':final}
                 
     return final_p
-
-
 
 
 

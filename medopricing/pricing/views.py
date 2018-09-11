@@ -29,10 +29,11 @@ def price(request):
 	#List all parts, or create a new instance.
 	#"""
 	if request.method == 'GET':
-		aux = Prices.objects.all()
+		aux1 = Prices.objects.all()
         serializer1 = PricesSerializer(aux)
-        params = JSONParser().parse(request) ## dict con los parametros
         prices = serializer1.data ### dict con los precios
+        params = JSONParser().parse(request) ## dict con los parametros
+        
         final = precio_mueble(params, prices)
         serializer2 = FinalSerializer(data=final) ## generando instancia
         aux2 = serializer2.save() ## Guardando instancia
